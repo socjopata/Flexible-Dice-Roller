@@ -29,10 +29,6 @@ class RollerController < UIViewController
     @input_field.enabled = true
     
     self.print_result(dice.result.to_s)
-<<<<<<< HEAD
-=======
-  
->>>>>>> fe13815b156245cfc326021b9992adb15059e829
   end
   
   def print_result(number)
