@@ -29,6 +29,10 @@ class RollerController < UIViewController
     @input_field.enabled = true
     
     self.print_result(dice.result.to_s)
+<<<<<<< HEAD
+=======
+  
+>>>>>>> fe13815b156245cfc326021b9992adb15059e829
   end
   
   def print_result(number)
@@ -62,10 +66,9 @@ class RollerController < UIViewController
 	   @label_text.numberOfLines = 0 # set 0 for word wrap
      @label_text.lineBreakMode = UILineBreakModeWordWrap
      @label_text.setText(hint_text)
-	   
+    
      adjustableLabel = UILabel_Adjustable.new({:fontName => "Arial", :fontSize => 16, :msg => hint_text, :labelHeight => 80, :labelWidth => 360.0})
      @label_text.setFont(adjustableLabel.bestFit)
-   
      self.view.addSubview @label_text
   end
 
