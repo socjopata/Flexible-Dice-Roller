@@ -1,4 +1,4 @@
 Flexible-Dice-Roller
 ====================
 
-A Dice Roller for IOS written using RubyMotion
+A Dice Roller for iOS written using RubyMotion

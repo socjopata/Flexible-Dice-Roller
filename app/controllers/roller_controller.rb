@@ -22,15 +22,18 @@ class RollerController < UIViewController
     
     dice_type = @input_field.text
     
-    Dice.roll_a_d(dice_type) do |number|
-      @button_roll.setTitle('input a number here', forState: UIControlStateNormal)
-      @button_roll.enabled = true
-      @input_field.enabled = true
-    end
+    dice = Dice.new(dice_type)
+    
+    @button_roll.setTitle("Roll!", forState: UIControlStateNormal)
+    @button_roll.enabled = true
+    @input_field.enabled = true
+    
+    self.print_result(dice.result.to_s)
   end
   
   def print_result(number)
    #using a custom initializer here. Remember to always call a designated initializer of their superclass, like initWithNibName:bundle: in this case
+   Dice.play_sound
    self.navigationController.pushViewController(ResultsController.alloc.initWithNumber(number), animated:true)
   end
   
@@ -40,14 +43,14 @@ class RollerController < UIViewController
     @input_field.textAlignment = UITextAlignmentCenter
     @input_field.autocapitalizationType = UITextBorderStyleRoundedRect
     @input_field.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 120)
-
+    @input_field.keyboardType = UIKeyboardTypeNumbersAndPunctuation
     self.view.addSubview @input_field
   end
 
   def button_roll
     @button_roll = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @button_roll.setTitle("Roll", forState:UIControlStateNormal)
-    @button_roll.setTitle("Waiting", forState:UIControlStateDisabled)
+    @button_roll.setTitle("Roll!", forState:UIControlStateNormal)
+    @button_roll.setTitle("\o/", forState:UIControlStateDisabled)
     @button_roll.sizeToFit
     @button_roll.center = CGPointMake(self.view.frame.size.width / 2, @input_field.center.y + 40)
 
@@ -55,17 +58,15 @@ class RollerController < UIViewController
   end
 
   def hint
-
-	   @text_label = UILabel.alloc.initWithFrame([[20, @button_roll.center.y+20], [270, @button_roll.center.y + 60]])
-	   @text_label.numberOfLines = 0 # set 0 for word wrap
-     @text_label.lineBreakMode = UILineBreakModeWordWrap
-     @text_label.setText(hint_text)
-	   adjustableLabel = UILabel_Adjustable.new({:fontName => "Arial", :fontSize => 12, :msg => hint_text, :labelHeight => 80, :labelWidth => 360.0})
-	
-     @text_label.setFont(adjustableLabel.bestFit)
-
+	   @label_text = UILabel.alloc.initWithFrame([[20, @button_roll.center.y+20], [270, @button_roll.center.y + 60]])
+	   @label_text.numberOfLines = 0 # set 0 for word wrap
+     @label_text.lineBreakMode = UILineBreakModeWordWrap
+     @label_text.setText(hint_text)
+	   
+     adjustableLabel = UILabel_Adjustable.new({:fontName => "Arial", :fontSize => 16, :msg => hint_text, :labelHeight => 80, :labelWidth => 360.0})
+     @label_text.setFont(adjustableLabel.bestFit)
    
-     self.view.addSubview @text_label
+     self.view.addSubview @label_text
   end
 
   def hint_text
