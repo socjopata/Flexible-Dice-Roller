@@ -10,8 +10,19 @@ class Dice
     url = NSURL.fileURLWithPath(path)
     error_ptr = Pointer.new(:id)
 
-    @buzzerSound = AVAudioPlayer.alloc.initWithContentsOfURL(url, error:error_ptr)
-    @buzzerSound.play   
+    @dice_roll_sound = AVAudioPlayer.alloc.initWithContentsOfURL(url, error:error_ptr)
+    
+    #rewritting from obj-c
+    # AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    #[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    #[[AVAudioSession sharedInstance] setActive: YES error: nil];
+    #[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    #[audioPlayer play];
+
+    AVAudioSession.sharedInstance.setCategory(AVAudioSessionCategoryPlayback, error:nil)
+    AVAudioSession.sharedInstance.setActive(true, error:nil)
+    
+    @dice_roll_sound.play   
   end
   
    

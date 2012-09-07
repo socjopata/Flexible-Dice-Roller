@@ -1,5 +1,8 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
+    
+    return_early_if_this_is_a_test
+    
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.applicationFrame)
     @window.makeKeyAndVisible # <- 'this window will receive taps, shakes and you name it'
     
@@ -15,4 +18,9 @@ class AppDelegate
     
     true
   end
+  
+  def return_early_if_this_is_a_test
+    return true if RUBYMOTION_ENV == 'test'
+  end
+  
 end

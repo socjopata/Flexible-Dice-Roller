@@ -1,0 +1,27 @@
+rand(6) + 1
+rand(6) + 1
+exit
+exit
+exit
+exit
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+Dice.new(6)
+@input_field = UITextField.alloc.initWithFrame [ [0,0] , [160,26]]
+@input_field.placeholder = 'input a number here'
+@input_field.textAlignment = UITextAlignmentCenter
+@input_field.autocapitalizationType = UITextBorderStyleRoundedRect
+@input_field.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 120)
+@input_field.keyboardType = UIKeyboardTypeNumbersAndPunctuation
+@input_field
+views(UITextField)
+exit
+exit
