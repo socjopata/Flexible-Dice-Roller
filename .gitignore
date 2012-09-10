@@ -5,4 +5,5 @@ resources/*.momd
 resources/*.storyboardc
 .redcar
 .rvmrc
+.idea
 .dat*
